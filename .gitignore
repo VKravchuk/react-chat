@@ -1,0 +1,5 @@
+node_modules/
+public/.sass-cache/
+public/bower_components/
+public/dist/
+.idea/

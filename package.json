@@ -1,0 +1,27 @@
+{
+  "name": "chat",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "event-stream": "^3.3.1",
+    "express": "~4.13.1",
+    "gulp": "*",
+    "gulp-compass": "^2.1.0",
+    "gulp-inject": "*",
+    "gulp-react": "^3.0.1",
+    "main-bower-files": "*",
+    "react-tools": "^0.13.3",
+    "socket.io": "*"
+  },
+  "devDependencies": {
+    "gulp-webpack": "^1.5.0",
+    "jsx-loader": "^0.13.2",
+    "webpack": "^1.10.5"
+  }
+}
