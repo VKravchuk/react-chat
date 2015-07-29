@@ -1,38 +1,40 @@
 var MessageList = require('./MessageList.jsx');
 var MessageForm = require('./MessageForm.jsx');
 var UsernameForm = require('./UsernameForm.jsx');
-
 var socket = io();
 
-module.exports = React.createClass({
-    getInitialState: function() {
-        return {messagesList: []};
-    },
-    loadMessages : function () {
-        var self = this;
+class Chat extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {messagesList : []};
+        this.newMessageHandle = this.newMessageHandle.bind(this);
+        this.setUser = this.setUser.bind(this);
+    }
+    loadMessages() {
+        let self = this;
         socket.on('new message', function(data){
-            var messagesList = self.state.messagesList;
+            let messagesList = self.state.messagesList;
             messagesList.push(data);
-            self.setState({messagesList: messagesList});
+            self.setState({messagesList : messagesList});
         });
-    },
-    newMessageHandle : function (message) {
-        var messagesList = this.state.messagesList;
+    }
+    newMessageHandle (message) {
+        let messagesList = this.state.messagesList;
         messagesList.push({
             message : message,
             my_message : true
         });
-        this.setState({messagesList: messagesList});
+        this.setState({messagesList : messagesList});
         socket.emit('new message', message);
-    },
-    setUser : function (user) {
+    }
+    setUser(user) {
         this.setState({username : user.username});
         socket.emit('add user', user);
-    },
-    componentDidMount : function () {
+    }
+    componentDidMount() {
         this.loadMessages();
-    },
-    render : function () {
+    }
+    render() {
         return (
             <div className="chatWrapper">
                 <MessageList messagesList={this.state.messagesList}/>
@@ -41,4 +43,6 @@ module.exports = React.createClass({
             </div>
         );
     }
-});
+}
+
+export default Chat;

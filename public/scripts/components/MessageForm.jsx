@@ -1,11 +1,15 @@
-module.exports = React.createClass({
-    handleSubmit : function (e) {
+class MessageForm extends React.Component{
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+    handleSubmit(e) {
         e.preventDefault();
-        var message = React.findDOMNode(this.refs.message).value.trim();
+        let message = React.findDOMNode(this.refs.message).value.trim();
         this.props.onMessageSent({message: message});
         React.findDOMNode(this.refs.message).value = '';
-    },
-    render: function () {
+    }
+    render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <input type="text" placeholder="Enter message" ref="message"/>
@@ -13,4 +17,6 @@ module.exports = React.createClass({
             </form>
         )
     }
-});
+}
+
+export default MessageForm;

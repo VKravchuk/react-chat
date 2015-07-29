@@ -1,11 +1,15 @@
-module.exports = React.createClass({
-    handleSubmit : function (e) {
+class UsernameForm extends React.Component{
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+    handleSubmit(e) {
         e.preventDefault();
-        var username = React.findDOMNode(this.refs.username).value.trim();
+        let username = React.findDOMNode(this.refs.username).value.trim();
         this.props.onUsernameSet({username: username});
         React.findDOMNode(this.refs.username).value = '';
-    },
-    render: function () {
+    }
+    render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <input type="text" placeholder="Enter username" ref="username"/>
@@ -13,4 +17,6 @@ module.exports = React.createClass({
             </form>
         )
     }
-});
+}
+
+export default UsernameForm;

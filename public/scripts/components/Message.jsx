@@ -1,6 +1,9 @@
-module.exports = React.createClass({
-    render: function () {
-        var classString = 'clear ';
+class Message extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        let classString = 'clear ';
         classString += this.props.my_message ? 'from-me' : 'from-them';
         return (
             <div className={classString}>
@@ -9,4 +12,6 @@ module.exports = React.createClass({
             </div>
         )
     }
-});
+}
+
+export default Message;
