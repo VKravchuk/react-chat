@@ -1,13 +1,14 @@
+var CONST = require('../constants/AppConstants.jsx');
 var AppDispatcher = require('../dispatchers/AppDispatcher');
 var socket = io();
 
 module.exports = {
     setUser(user) {
         AppDispatcher.dispatch({
-            eventName : 'add-user',
+            eventName : CONST.CLIENT_EVENTS.ADD_USER,
             data : {username : user}
         });
-        socket.emit('add user', user);
+        socket.emit(CONST.SERVER_EVENTS.ADD_USER, user);
     }
 
 };

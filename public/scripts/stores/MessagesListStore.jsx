@@ -1,5 +1,7 @@
 var AppDispatcher = require('../dispatchers/AppDispatcher.jsx');
 var MicroEvent = require('../../bower_components/micro-event/microevent.js');
+var CONST = require('../constants/AppConstants.jsx');
+
 
 var MessagesListStore = {
     items : [],
@@ -12,16 +14,16 @@ MessagesListStore.dispatchToken = AppDispatcher.register( function( payload ) {
 
     switch( payload.eventName ) {
 
-        case 'my-new-message':
+        case CONST.CLIENT_EVENTS.MY_NEW_MESSAGE:
             let data = payload.data;
             data.my_message = true;
             MessagesListStore.items.push( data );
-            MessagesListStore.trigger( 'message-change' );
+            MessagesListStore.trigger( CONST.CLIENT_EVENTS.MESSAGE_CHANGE);
             break;
 
-        case 'new-message':
+        case CONST.CLIENT_EVENTS.SERVER_NEW_MESSAGE:
             MessagesListStore.items.push( payload.data );
-            MessagesListStore.trigger( 'message-change' );
+            MessagesListStore.trigger( CONST.CLIENT_EVENTS.MESSAGE_CHANGE );
             break;
 
     }

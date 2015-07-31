@@ -1,6 +1,7 @@
 var Message = require('./Message.jsx');
 var MessagesListStore = require('../stores/MessagesListStore.jsx');
 var MessageActions = require('../actions/MessageActions.jsx');
+var CONST = require('../constants/AppConstants.jsx');
 
 class MessageList extends React.Component{
     constructor(props) {
@@ -12,7 +13,7 @@ class MessageList extends React.Component{
         MessageActions.loadMessages();
 
         this.messagesUpdate = this.messagesUpdate.bind(this);
-        MessagesListStore.bind( 'message-change', this.messagesUpdate);
+        MessagesListStore.bind( CONST.CLIENT_EVENTS.MESSAGE_CHANGE, this.messagesUpdate);
     }
     messagesUpdate(){
         this.setState({
