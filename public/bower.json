@@ -4,6 +4,7 @@
   "dependencies": {
     "react" : "0.13.3",
     "jquery" : "2.1.1",
-    "socket.io-client" : "*"
+    "socket.io-client" : "*",
+    "micro-event": "git@github.com:jeromeetienne/microevent.js.git"
   }
 }

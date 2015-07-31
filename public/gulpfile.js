@@ -16,15 +16,20 @@ var bowerFiles = require('main-bower-files'),
 
     var jsFiles = gulp.src('./dist/index.js');
 
-gulp.task('default', function () {
-    gulp.src('scripts/main.jsx')
+gulp.task('compile', function () {
+    return gulp.src('scripts/main.jsx')
         .pipe(webpack( require('./webpack.config.js') ))
         .pipe(gulp.dest('dist/'));
-    gulp.src('index.html')
+});
+gulp.task('insert', function () {
+    return gulp.src('index.html')
         .pipe(inject(gulp.src(bowerFiles(), {read: false}), {name: 'bower'}))
         .pipe(inject(es.merge(
             cssFiles,
             jsFiles
         )))
         .pipe(gulp.dest(''));
+});
+gulp.task('default', ['compile'], function () {
+    gulp.watch('./scripts/**/*.jsx', ['compile'])
 });

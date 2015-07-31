@@ -1,13 +1,15 @@
+var UserActions = require('../actions/UserActions.jsx');
+
 class UsernameForm extends React.Component{
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(e) {
         e.preventDefault();
         let username = React.findDOMNode(this.refs.username).value.trim();
-        this.props.onUsernameSet({username: username});
         React.findDOMNode(this.refs.username).value = '';
+        UserActions.setUser(username)
     }
     render() {
         return (
