@@ -12,7 +12,7 @@ class Chat extends React.Component {
         UserStore.bind(CONST.CLIENT_EVENTS.USER_CHANGE, this.userWasSet)
     }
     userWasSet(){
-        this.setState({username : UserStore.getUser()})
+        this.setState({username : UserStore.getCurrentUser()})
     }
     render() {
         return (

@@ -1,6 +1,6 @@
-var Chat = require('./components/Chat.jsx');
+var ChatWrapper = require('./components/ChatWrapper.jsx');
 
 React.render(
-<Chat/>,
+<ChatWrapper/>,
     document.getElementById('content')
 );

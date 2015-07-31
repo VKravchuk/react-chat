@@ -3,11 +3,10 @@ var AppDispatcher = require('../dispatchers/AppDispatcher');
 var socket = io();
 
 module.exports = {
-    setUser(user) {
+    searchChat(user) {
         AppDispatcher.dispatch({
-            eventName : CONST.CLIENT_EVENTS.ADD_USER,
+            eventName : CONST.CLIENT_EVENTS.CHAT_SEARCH,
             data : {username : user}
         });
-        socket.emit(CONST.SERVER_EVENTS.ADD_USER, user);
     }
 };

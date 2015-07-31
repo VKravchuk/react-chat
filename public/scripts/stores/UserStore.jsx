@@ -4,7 +4,7 @@ var CONST = require('../constants/AppConstants.jsx');
 
 var UserStore = {
     user : {},
-    getUser() {
+    getCurrentUser() {
         return this.user;
     }
 };
