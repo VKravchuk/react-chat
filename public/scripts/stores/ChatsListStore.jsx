@@ -9,12 +9,24 @@ var ChatsListStore = {
             id : 1
         },
         {
-            username : 'test 2',
+            username : 'testre 2',
             id : 2
         },
         {
             username : 'test 2',
-            id : 3
+            id : 4
+        },
+        {
+            username : 'htre 2',
+            id : 5
+        },
+        {
+            username : 'reht 2',
+            id : 6
+        },
+        {
+            username : 'rege 2',
+            id : 7
         }
     ],
     filteredItems : [],
@@ -33,7 +45,7 @@ ChatsListStore.dispatchToken = AppDispatcher.register( function( payload ) {
 
         case CONST.CLIENT_EVENTS.CHAT_SEARCH:
             if(payload.data.username){
-                ChatsListStore.filteredItems = ChatsListStore.items.filter( item => item.username == payload.data.username );
+                ChatsListStore.filteredItems = ChatsListStore.items.filter( item => item.username.search(payload.data.username) != -1  );
             }
             else{
                 ChatsListStore.filteredItems = ChatsListStore.items
