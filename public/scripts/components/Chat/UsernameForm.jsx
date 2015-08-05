@@ -1,4 +1,4 @@
-var UserActions = require('../actions/UserActions.jsx');
+var UserActions = require('../../actions/UserActions.jsx');
 
 class UsernameForm extends React.Component{
     constructor(props) {

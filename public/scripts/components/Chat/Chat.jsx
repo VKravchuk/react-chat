@@ -1,8 +1,8 @@
 var MessageList = require('./MessageList.jsx');
 var MessageForm = require('./MessageForm.jsx');
 var UsernameForm = require('./UsernameForm.jsx');
-var UserStore = require('../stores/UserStore.jsx');
-var CONST = require('../constants/AppConstants.jsx');
+var UserStore = require('../../stores/UserStore.jsx');
+var CONST = require('../../constants/AppConstants.jsx');
 
 class Chat extends React.Component {
     constructor(props) {

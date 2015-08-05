@@ -1,7 +1,7 @@
 var Message = require('./Message.jsx');
-var MessagesListStore = require('../stores/MessagesListStore.jsx');
-var MessageActions = require('../actions/MessageActions.jsx');
-var CONST = require('../constants/AppConstants.jsx');
+var MessagesListStore = require('../../stores/MessagesListStore.jsx');
+var MessageActions = require('../../actions/MessageActions.jsx');
+var CONST = require('../../constants/AppConstants.jsx');
 
 class MessageList extends React.Component{
     constructor(props) {

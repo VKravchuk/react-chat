@@ -1,4 +1,4 @@
-var ChatActions = require('../actions/ChatActions.jsx');
+var ChatActions = require('../../actions/ChatActions.jsx');
 
 class MessageForm extends React.Component{
     constructor(props) {

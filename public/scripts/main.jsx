@@ -1,6 +1,6 @@
-var Counter = require('./components/Counter.jsx');
-document.cookie = 'test_key="test_value"';
+var Counter = require('./components/Counter/Counter.jsx');
+var container = document.getElementById('counter');
 React.render(
-<Counter/>,
-    document.getElementById('content')
+<Counter initNumber={container.getAttribute('data-init-number')}/>,
+    container
 );

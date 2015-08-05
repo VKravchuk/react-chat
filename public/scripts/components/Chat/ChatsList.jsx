@@ -1,6 +1,6 @@
 var ChatItem = require('./ChatItem.jsx');
-var ChatsListStore = require('../stores/ChatsListStore.jsx');
-var CONST = require('../constants/AppConstants.jsx');
+var ChatsListStore = require('../../stores/ChatsListStore.jsx');
+var CONST = require('../../constants/AppConstants.jsx');
 
 class ChatList extends React.Component {
     constructor(props){

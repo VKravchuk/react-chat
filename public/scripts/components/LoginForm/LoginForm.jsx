@@ -1,6 +1,6 @@
-var UserActions = require('../actions/UserActions.jsx');
-var LoginFormStore = require('../stores/LoginFormStore.jsx');
-var CONST = require('../constants/AppConstants.jsx');
+var UserActions = require('../../actions/UserActions.jsx');
+var LoginFormStore = require('../../stores/LoginFormStore.jsx');
+var CONST = require('../../constants/AppConstants.jsx');
 
 class Chat extends React.Component {
     constructor(props) {
