@@ -25,10 +25,16 @@ var numUsers = 0;
 
 io.on('connection', function (socket) {
     var addedUser = false;
-    if(checkSession(socket.request.headers.cookie)){
-        console.log(socket.request.headers.cookie);
-    }
+    //checkSession(socket);
 
+
+});
+
+function notAuthUserHandler (){
+
+}
+
+function runChatApp(socket) {
     // when the client emits 'new message', this listens and executes
     socket.on('new message', function (data) {
         // we tell the client to execute 'new message'
@@ -87,11 +93,10 @@ io.on('connection', function (socket) {
             });
         }
     });
-});
+}
 
-
-function checkSession(cookie) {
-    var parsedCookie = cookieParser.parse(cookie);
+function checkSession( socket) {
+    var parsedCookie = cookieParser.parse(socket.request.headers.cookie);
     var sessionConfig = {
         client: {
             key: 'test_key'
@@ -101,22 +106,20 @@ function checkSession(cookie) {
         }
     };
     var sessionKey = sessionConfig.redis.prefix + parsedCookie[sessionConfig.client.key];
-    var isLogin = false;
-    client.get(sessionKey, function (err, replies) {
+    var session = false;
+    client.get(sessionKey, function (err, sessionData) {
         if (err) {
             console.log(err);
-            isLogin = false;
+            notAuthUserHandler()
         }
-        else if (replies) {
-            console.log(replies.substring(1, replies.length - 1).replace(/\\/g, ''));
-            console.log(PHPUnserialize.unserialize(replies.substring(1, replies.length - 1).replace(/\\/g, '')));
-            isLogin = true;
+        else if (sessionData) {
+            session = PHPUnserialize.unserialize(sessionData.substring(1, sessionData.length - 1).replace(/\\/g, ''));
+            runChatApp(socket)
         }
         else {
             console.log('Record does not exist!');
-            isLogin = false;
+            notAuthUserHandler()
         }
         client.quit();
     });
-    return isLogin;
 }

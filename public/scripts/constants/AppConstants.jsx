@@ -10,6 +10,8 @@ module.exports = {
     },
     SERVER_EVENTS : {
         NEW_MESSAGE : 'new message',
-        ADD_USER : 'add user'
+        ADD_USER : 'add user',
+        AUTH_SUCCESS : 'auth_success',
+        AUTH_FAIL : 'auth_fail'
     }
 };
