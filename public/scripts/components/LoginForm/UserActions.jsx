@@ -1,7 +1,6 @@
-var CONST = require('../constants/AppConstants.jsx');
-var AppDispatcher = require('../dispatchers/AppDispatcher');
-var API = require('../utils/API.jsx');
-var socket = io();
+var CONST = require('./AppConstants.jsx');
+var AppDispatcher = require('./AppDispatcher');
+var API = require('./API.jsx');
 
 module.exports = {
     /*setUser(user) {
@@ -12,7 +11,7 @@ module.exports = {
         socket.emit(CONST.SERVER_EVENTS.ADD_USER, user);
     }*/
     login(account, password){
-        API.login()
+        API.login(account, password)
             .done(function (resp) {
                 AppDispatcher.dispatch({
                     eventName : CONST.SERVER_EVENTS.AUTH_SUCCESS,
@@ -22,7 +21,7 @@ module.exports = {
             .fail(function (err) {
                 AppDispatcher.dispatch({
                     eventName : CONST.SERVER_EVENTS.AUTH_FAIL,
-                    data : {errors : err}
+                    data : {errors : err.responseJSON}
                 });
 
             })

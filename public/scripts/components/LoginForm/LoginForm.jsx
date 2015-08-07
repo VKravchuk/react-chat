@@ -1,47 +1,63 @@
-var UserActions = require('../../actions/UserActions.jsx');
-var LoginFormStore = require('../../stores/LoginFormStore.jsx');
-var CONST = require('../../constants/AppConstants.jsx');
+var UserActions = require('./UserActions.jsx');
+var LoginFormStore = require('./LoginFormStore.jsx');
+var CONST = require('./AppConstants.jsx');
 
-class Chat extends React.Component {
+export default class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
         this.loginFail = this.loginFail.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        LoginFormStore.bind( CONST.SERVER_EVENTS.AUTH_SUCCESS, this.loginSuccess);
-        LoginFormStore.bind( CONST.SERVER_EVENTS.AUTH_FAIL, this.loginFail);
+        LoginFormStore.bind(CONST.SERVER_EVENTS.AUTH_SUCCESS, this.loginSuccess);
+        LoginFormStore.bind(CONST.SERVER_EVENTS.AUTH_FAIL, this.loginFail);
     }
-    loginSuccess(){
+
+    loginSuccess() {
         console.log(LoginFormStore.getAllData());
         document.location.reload();
     }
-    loginFail(){
-        console.log(LoginFormStore.getLoginErrors());
-        this.setState({ errors : LoginFormStore.getLoginErrors()})
+
+    loginFail() {
+        this.setState({errors: LoginFormStore.getLoginErrors()})
     }
+
     handleSubmit(e) {
         e.preventDefault();
         let account = React.findDOMNode(this.refs.account).value.trim();
         let password = React.findDOMNode(this.refs.password).value.trim();
         UserActions.login(account, password);
     }
+
     render() {
-        let errors;
-        if(this.state.errors) {
-            errors = this.state.errors.map(function (error) {
-                return <span>{error}</span>
-            });
+        let errors = [];
+        //console.log(this.state.errors);
+        if (this.state.errors) {
+            for (let attr in this.state.errors){
+                if (this.state.errors.hasOwnProperty(attr)){
+                    errors.push(<span>{this.state.errors[attr]}</span>);
+                }
+            }
         }
         return (
-            <form onSubmit={this.handleSubmit}>
-                <h4>Anmelden</h4>
-                <input type="text" placeholder="Account" ref="account"/>
-                <input type="password" placeholder="Password" ref="password"/>
+            <form role="form" onSubmit={this.handleSubmit}>
                 {errors}
-                <input type="submit" value="Anmelden"/>
+                <div className="form-group">
+                    <div className="input-group input-group-lg">
+                        <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                        <input type="text" className="form-control" placeholder="Account" ref="account"/>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <div className="input-group input-group-lg">
+                        <span className="input-group-addon"><i className="fa fa-key"></i></span>
+                        <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"
+                               ref="password"/>
+                    </div>
+
+                    <p className="help-block"><a href="reset-password.html">Forgot your password?</a></p>
+                </div>
+                <button type="submit" className="btn btn-primary btn-lg btn-block">Anmelden</button>
             </form>
         )
     }
 }
-
-export default Chat;

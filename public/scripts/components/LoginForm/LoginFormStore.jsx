@@ -1,6 +1,6 @@
-var AppDispatcher = require('../dispatchers/AppDispatcher.jsx');
-var MicroEvent = require('../../bower_components/micro-event/microevent.js');
-var CONST = require('../constants/AppConstants.jsx');
+var AppDispatcher = require('./AppDispatcher.jsx');
+var MicroEvent = require('../../../bower_components/micro-event/microevent.js');
+var CONST = require('./AppConstants.jsx');
 
 var LoginFormStore = {
     errors : [],
@@ -14,9 +14,7 @@ var LoginFormStore = {
 };
 MicroEvent.mixin( LoginFormStore );
 LoginFormStore.dispatchToken = AppDispatcher.register( function( payload ) {
-
     switch( payload.eventName ) {
-
         case CONST.SERVER_EVENTS.AUTH_SUCCESS:
             LoginFormStore.data = payload.data.resp;
             LoginFormStore.trigger( CONST.SERVER_EVENTS.AUTH_SUCCESS );
